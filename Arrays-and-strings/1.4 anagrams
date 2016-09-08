@@ -1,0 +1,30 @@
+#include<ctype.h>
+using namespace std;
+int main()
+{
+    int count1[26]={0};
+    int count2[26]={0};
+    char s1[100];
+    cin>>s1;
+    char s2[100];
+    cin>>s2;
+    bool b=true;
+    for(int i=0;i<strlen(s1);i++)
+    {
+          s1[i]=tolower(s1[i]);
+          count1[s1[i]-'a']++;
+    }
+    for(int i=0;i<strlen(s2);i++)
+    {
+          s1[i]=tolower(s2[i]);
+          count2[s2[i]-'a']++;
+    }
+    for(int i=0;i<26;i++){
+      if(count1[i]!=count2[i])
+      {
+        b=false;
+        break;
+      }   
+    }
+    cout<<b<<endl;
+}
