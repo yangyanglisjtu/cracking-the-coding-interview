@@ -18,3 +18,22 @@ int main()
 	  }
 	  cout << b << endl;
 }
+//only using arrays
+#include<iostream>
+#include<string>
+using namespace std;
+int main()
+{
+   int count[256]={0}; //ascii only can change from 0 to 255
+   bool b=false;
+   string s;
+   cin>>s;
+   for(auto c:s){
+       count[c]++;
+       if(count[c]>1){
+          b=true;
+          break;
+       }
+   }
+   cout<<b<<endl;
+}
