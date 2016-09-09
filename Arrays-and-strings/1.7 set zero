@@ -1,0 +1,55 @@
+#include<vector>
+#include<iostream>
+using namespace std;
+int main()
+{
+  int N,M;
+  cin>>N>>M;
+  vector<vector<int>> matrix;
+  for(int i=0;i<N;i++)
+  {
+     vector<int> temp;
+     for(int j=0;j<M;j++)
+     {
+        int a;
+        cin>>a;
+        temp.push_back(a);
+     }
+     matrix.push_back(temp);
+  }
+  vector<int> zero_row(N,0);
+  vector<int> zero_col(M,0);
+  for(int i=0;i<N;i++)
+  {
+    for(int j=0;j<M;j++){
+      if(matrix[i][j]==0)
+      {
+        zero_row[i]=1;
+        zero_col[j]=1;
+      }
+    }
+  }
+  for(int i=0;i<N;i++){
+     if(zero_row[i]==1){
+      for(int j=0;j<M;j++){
+        matrix[i][j]=0;
+      }
+     }  
+  }
+  for(int j=0;j<M;j++){
+    if(zero_col[j]==1){
+      for(int i=0;i<N;i++){
+        matrix[i][j]=0;
+      }
+    }
+  }
+  for(int i=0;i<N;i++)
+  {
+     for(int j=0;j<M;j++)
+     {
+       cout<<matrix[i][j]<<"　";
+     }
+     cout<<endl;
+  }
+  cin.get();
+}
