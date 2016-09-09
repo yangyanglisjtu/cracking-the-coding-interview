@@ -6,6 +6,7 @@ struct Node {
 	Node* next;
 	Node(int v):val(v) { next = NULL; }
 };
+//using extra space
 void removeDuplicate(Node* node)
 {
 	if (node == NULL&&node->next == NULL)
@@ -21,6 +22,28 @@ void removeDuplicate(Node* node)
 		}
 		s.insert(node->next->val);
 		node = node->next;
+	}
+}
+//don't use extra space
+void removeDuplicate(Node* node)
+{
+	if (node == NULL&&node->next == NULL)
+		return;
+	Node* n1= node;
+	Node* n2 ;
+	while (n1!= NULL)
+	{
+		n2 = n1;
+		while (n2 != NULL&&n2->next != NULL) 
+		{
+			if (n2->next->val == n1->val) 
+			{
+				n2->next = n2->next->next;
+				continue;
+			}
+			n2 = n2->next;
+		}
+		n1 = n1->next;
 	}
 }
 int main()
