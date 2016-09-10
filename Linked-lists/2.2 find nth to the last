@@ -1,72 +1,40 @@
 #include<iostream>
 using namespace std;
-struct Node {
-	int val;
-	Node* next;
-	Node(int v) :val(v) { next = NULL; }
+struct Node{
+   int val;
+   Node* next;
+   Node(int v):val(v){ next=NULL;}
 };
-Node* sum(Node* list1, Node* list2)
-{
-	Node* head = NULL;
-	Node* node= NULL;
-	bool first_node = true;
-	int a, b, c = 0, temp;
-	while (list1 != NULL || list2 != NULL) 
-	{
-		if (list1 != NULL&&list2 != NULL)
-		{
-			a = list1->val;
-			b = list2->val;
-			list1 = list1->next;
-			list2 = list2->next;
-		}
-		else if (list1 != NULL) {
-			a = list1->val; b = 0;
-			list1 = list1->next;
-		}
-		else {
-			b = list2->val; a = 0;
-			list2 = list2->next;
-		}
-		temp = a + b + c >= 10 ? a + b + c - 10 : a + b + c;
-		Node* n = new Node(0);
-		n->val = temp;
-		if (first_node) {
-			first_node = false;
-			head = n;
-			node = n;
-		}else {
-			node->next = n;
-			node = n;
-		}
-		c = a + b + c >= 10 ? 1 : 0;
-	}
-	return head;
-}
 int main()
 {
-	Node* head1 = new Node(1);
-	Node* head2 = new Node(1);
-	Node* node1 = head1;
-	Node* node2 = head2;
-	for (int i = 1; i<5; i++)
-	{
-		int a;
-		int b;
-		cin >> a;
-		cin >> b;
-		Node* n1 = new Node(a);
-		Node* n2 = new Node(b);
-		node1->next = n1;
-		node1 = n1;
-		node2->next = n2;
-		node2 = n2;
-	}
-	Node* node=sum(head1, head2);
-	while (node !=NULL) {
-		cout << node->val << "->";
-		node=node->next;
-	}
-	cout << endl;
+    int n;
+    cin>>n;
+    Node* head=new Node(1);
+    Node* node=head;
+    for(int i=1;i<10;i++)
+    {
+       int a;
+       cin>>a;
+       Node* n=new Node(a);
+       node->next=n;
+       node=n;
+    }
+    node=head;
+    int length=0;
+    while(node!=NULL){
+      length++;
+      node=node->next;
+    }
+    //can't find the n
+    if(length<=n){
+       return 1;
+    }
+    node=head;
+    for(int i=0;i<length-n;i++)
+    {
+       node=node->next;
+    }
+    cout<<node->val<<endl;
+    cin.get();
+    cin.get();
 }
-  
