@@ -1,0 +1,25 @@
+#include<iostream>
+using namespace std;
+struct Node {
+  int val;
+  Node* next;
+  Node(int v):val(v){next=NULL;}
+};
+void deleteMiddle(Node* node)
+{
+   if(node==NULL||node->next==NULL)
+      return;
+   Node* one=node;
+   Node* two=node->next->next;
+   while(two!=NULL&&two->next!=NULL)
+   {
+      two=two->next->next;
+      one=one->next;
+   }
+   one->next=one->next->next;
+}
+int main()
+{
+   Node* head=NULL;
+   deleteMiddle(head);
+}
