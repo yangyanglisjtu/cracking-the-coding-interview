@@ -9,7 +9,7 @@ struct Node {
 //using extra space
 void removeDuplicate(Node* node)
 {
-	if (node == NULL&&node->next == NULL)
+	if (node == NULL||node->next == NULL)
 		return;
 	set<int> s;
 	s.insert(node->val);
@@ -27,7 +27,7 @@ void removeDuplicate(Node* node)
 //don't use extra space
 void removeDuplicate(Node* node)
 {
-	if (node == NULL&&node->next == NULL)
+	if (node == NULL||node->next == NULL)
 		return;
 	Node* n1= node;
 	Node* n2 ;
