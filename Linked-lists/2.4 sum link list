@@ -21,7 +21,8 @@ Node* sum(Node* list1, Node* list2)
 			list2 = list2->next;
 		}
 		else if (list1 != NULL) {
-			a = list1->val; b = 0;
+			a = list1->val; 
+			b = 0;
 			list1 = list1->next;
 		}
 		else {
@@ -41,24 +42,36 @@ Node* sum(Node* list1, Node* list2)
 		}
 		c = a + b + c >= 10 ? 1 : 0;
 	}
+	if (c != 0) {
+		Node* n = new Node(1);
+		node->next = n;
+		node = n;
+	}
 	return head;
 }
 int main()
 {
-	Node* head1 = new Node(1);
-	Node* head2 = new Node(1);
+	Node* head1 = new Node(0);
+	Node* head2 = new Node(0);
 	Node* node1 = head1;
 	Node* node2 = head2;
-	for (int i = 1; i<5; i++)
+	int n;
+	cin >> n;
+	int m;
+	cin >> m;
+	for (int i = 0; i<n; i++)
 	{
 		int a;
-		int b;
 		cin >> a;
-		cin >> b;
 		Node* n1 = new Node(a);
-		Node* n2 = new Node(b);
 		node1->next = n1;
 		node1 = n1;
+	}
+	for (int i = 0; i<m; i++)
+	{
+		int b;
+		cin >> b;
+		Node* n2 = new Node(b);
 		node2->next = n2;
 		node2 = n2;
 	}
