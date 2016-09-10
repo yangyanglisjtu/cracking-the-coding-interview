@@ -1,0 +1,42 @@
+#include<iostream>
+using namespace std;
+struct Node {
+	int val;
+	Node* next;
+	Node(int v) :val(v) { next = NULL; }
+};
+void sum(Node* list1, Node* list2)
+{
+	Node* head = NULL;
+	//node=head;
+	bool first_node = true;
+	int a, b, c = 0, temp;
+	while (list1 != NULL || list2 != NULL) {
+		if (list1 != NULL&&list2 != NULL)
+		{
+			a = list1->val;
+			b = list2->val;
+		}
+		else if (list1 != NULL) {
+			a = list1->val; b = 0;
+		}
+		else {
+			b = list2->val; a = 0;
+		}
+		temp = a + b + c >= 10 ? a + b + c - 10 : a + b + c;
+		Node* node = new Node(0);
+		node->val = temp;
+		if (first_node) {
+			first_node = false;
+			head = node;
+		}
+		c = a + b + c >= 10 ? 1 : 0;
+		node = node->next;
+	}
+}
+int main()
+{
+	Node* head1 = NULL;
+	Node* head2 = NULL;
+	sum(head1, head2);
+}
