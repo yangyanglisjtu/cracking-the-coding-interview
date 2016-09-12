@@ -1,0 +1,15 @@
+#include<iostream>
+#include<vector>
+int main(){
+  stack s;
+  vector<int> v;
+  while(!s.isEmpty()){
+     v.push_back(s.top());
+     v.pop();
+  }
+  sort(v.begin(),v.end());
+  for(auto a:v){
+    s.push(a);  
+  }
+  return 0;
+}
