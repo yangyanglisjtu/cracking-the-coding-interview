@@ -1,0 +1,44 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+#define MAXONESTACK 100
+class SetOfStacks{
+public:
+  void push(int a){
+    if(nowindex==-1||data[nowindex].size()>=MAXONESTACK){
+      vector<int> temp;
+      temp.push_back(a);
+      data.push_back(temp);
+      nowindex++;
+    }
+  }
+  int pop(){
+     while(nowindex!=-1&&data[nowindex].size()==0){
+         nowindex--;
+         data.pop_back();
+     }
+     if(nowindex==-1){
+       exit(1);
+     }
+     int a=data[nowindex].back();
+     data[nowindex].pop_back();
+     return a;
+  }
+  int popAt(int index){
+    if(index>nowindex||data[index].size()==0){
+       exit(1);
+    }
+    int a=data[index].back();
+    data[index].pop_back();
+    return a;
+  }
+  SetOfStacks():nowindex(-1){
+  }
+private: 
+  vector<vector<int>> data;
+  int nowindex;
+};
+int main()
+{
+  return 0;
+}
