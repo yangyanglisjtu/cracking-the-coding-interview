@@ -1,0 +1,31 @@
+#include<iostream>
+#include<vector>
+using namespace std;
+class mystack{
+public:
+	void pop() {
+		v.pop_back();
+		m.pop_back();
+	}
+	void push(int a) {
+		v.push_back(a);
+		if (a < m.back())
+			m.push_back(a);
+		else {
+			m.push_back(m.back());
+		}
+	}
+	int min() {
+		return m.back();
+	}
+	mystack() { m.push_back(INT_MAX); }
+
+private:
+	vector<int> v;
+	vector<int> m;
+};
+
+int main() {
+	
+	return 0;
+}
