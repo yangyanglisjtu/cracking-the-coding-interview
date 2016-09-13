@@ -1,0 +1,33 @@
+#include<iostream>
+using namespace std;
+street NODE{
+    int val;
+    NODE* left;
+    NODE* right;
+}
+vector<int> v_height;
+void bfs(int height,Node* node){
+  if(node==NULL)
+     return;
+  if(node->left==NULL&&node->right==NULL){
+      v_height.push_back(height);
+  }
+  bfs(height+1,node->left);
+  bfs(height+1,node->right);
+}
+int main()
+{
+  NODE* tree=NULL;
+  int max=INT_MIN;
+  int min=INT_MAX;
+  dfs(0,tree);
+    for(auto a:v_height){
+     if(a>max){
+        max=a;
+     }
+     if(a<min){
+        min=a;
+     }
+  }
+  cout<<max-min<<endl;
+}
