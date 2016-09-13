@@ -1,0 +1,34 @@
+#include<iostream>
+#include<list>
+#define NODENUM 100;
+class Graph{
+   list<int> vectex[NODENUM];
+   void addAge(int source,int target){
+      vectex[source].push_back(target);
+   };
+};
+bool isConnect(Graph& g,int source,int target){
+   if(g[source].empty())
+     return false;
+   list<int>::iterator itr;
+   queue<int> q;
+   q.push(source);
+   while(!q.empty()){
+      int val=q.front();
+      q.pop();
+      for(itr=g[val].begin(),itr!=g[val].end();itr++){
+         q.push(*itr);
+         if(*itr==target)
+            return true;
+      }
+   }
+   return fasle;
+}
+int main(){
+   Graph g;
+   g.addAge(0,1);
+   g.addAge(1,2);
+   g.addAge(1,3); 
+   g.addAge(4,5);
+   isConnect(g,0,1);
+}
