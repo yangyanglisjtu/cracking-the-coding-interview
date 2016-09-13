@@ -1,6 +1,6 @@
 #include<iostream>
 using namespace std;
-street NODE{
+struct NODE{
     int val;
     NODE* left;
     NODE* right;
