@@ -1,0 +1,34 @@
+//find next node(in-order successor)
+//if can't find node,return NULL 
+#include<iostream>
+using namespace std;
+struct Node{
+	int val;
+	Node* left;
+	Node* right;
+	Node* parent;
+	Node(int v) :val(v) { left = NULL; right = NULL; parent = NULL; }
+};
+Node* findNext(Node* n){
+	if (n == NULL)
+		return NULL;
+	if (n->right != NULL) {
+		n = n->right;
+		while (n->left != NULL) {
+			n = n->left;
+		}
+		return n;
+	}
+	else {
+		while (n->parent != NULL&&n->parent->left != n) {
+			n = n->parent;
+		}
+		return n->parent;
+	}
+	return NULL;
+}
+int main()
+{
+	Node *root = NULL;
+	findNext(root);
+}
