@@ -1,0 +1,32 @@
+#include<iostream>
+using namespace std;
+struct NODE {
+	int val;
+	NODE* left;
+	NODE* right;
+	NODE(int v) :val(v) { left = NULL; right = NULL; };
+};
+void createTree(NODE*& node,int lowIndex, int highIndex, int a[]) {
+	if (lowIndex>highIndex)
+		return;
+	int mid = (lowIndex + highIndex) / 2;
+	node = new NODE(a[mid]);
+	//node = n;
+	createTree(node->left, lowIndex, mid - 1,a);
+	createTree(node->right, mid + 1, highIndex,a);
+}
+void inOrder(NODE* node) {
+	if (node == NULL)
+		return;
+	inOrder(node->left);
+	cout << node->val<<" ";
+	inOrder(node->right);
+}
+int main()
+{
+	int sortedArray[8] = { 0,1,2,3,4,5,6,7 };
+	NODE* root = NULL;
+	createTree(root, 0, 7, sortedArray);
+	inOrder(root);
+	cin.get();
+}
