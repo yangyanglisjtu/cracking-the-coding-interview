@@ -1,0 +1,42 @@
+#include<iostream>
+using namespace std;
+struct Node{
+   int val;
+   Node* left;
+   Node* right;
+   Node(int v):val(v){left=NULL;right=NULL;}
+};
+void isReachable(Node* sourceNode,Node* targetNode,bool& find){
+   if(sourceNode==NULL)
+     return;
+   if(sourceNode==targetNode){
+      find=true;
+      return ;
+   }
+   isReachable(sourceNode->left,targetNode,find);
+   isReachable(sourceNode->right,targetNode,find);
+}
+bool iscommon(Node* pNode,Node* node1,Node node2){
+    if(pNode==NULL)
+      return false;
+    bool b1=false,b2=false;
+    isReachable(pNode,node1,b1);
+    isReachable(pNode,node2,b2);
+    return b1&&b2;
+}
+int main(){
+   Node* head=NULL;
+   Node* node1;
+   Node* node2;
+   Node* node=head;
+   while(node!=NULL)
+  {
+    if(iscommon(node->left,node1,node2))
+       node=node->left;
+    else if(iscommon(node->right,node1,node2)
+       node=node->right;
+    else 
+        return node;
+  }
+  return node;
+}
