@@ -1,0 +1,35 @@
+void split(string number,string& ip,string& dp,int& integer,float& decimal){
+   bool b=true;
+   for(int i=0;i<number.size();i++){
+      if(number[i]=='.'){
+         b=false;
+         dp+=".";
+         continue;
+      }else if(b){
+         ip+=number[i];
+      }else{
+         dp+=number[i];
+      }
+   }
+   integer=stoi(ip);
+   decimal=stof(dp);
+}
+void convertDouble2Binary(string number){
+  string integerPart;
+  string decimalPart;
+  int iPart;
+  int dPart;
+  split(number,integerPart,decimalPart,iPart,dPart);
+  string int_string ="";
+  while(iPart>0){
+     int r=iPart%2;
+     iPart=iPart>>1;
+     int_string=to_string(r)+res;
+  }
+  string dec_string ;
+  while(dPart>0){
+    if(dec_string.size()>32) return "ERROR";
+    dec_string=+to_string(int(dPart*2))
+  }
+  return int_string+"."+decstring; 
+} 
