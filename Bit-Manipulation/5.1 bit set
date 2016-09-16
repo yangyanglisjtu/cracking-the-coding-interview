@@ -1,0 +1,6 @@
+void setBit(bitset<32> N,bitset<32> M,int start,int length){
+   int i=0;
+   while(start+i<32&&i<length){
+      N[start+i]=M[i];
+   }
+}
