@@ -1,0 +1,72 @@
+/*To get the next highest number, simply search for the first instance of 01, starting on the right and change this to 10. Then collapse all the 1s to the right of the swapped bits into their least significant positions.
+
+Example:
+
+ ||
+00110000 // 0x30 in hex
+After swap:
+
+ ||
+01010000 // 0x50 in hex
+Next, collapse all the 1s to the right of the swapped bits into the least significant positions:
+
+ ||---->
+01000001 // 0x41 in hex
+To get the previous number, search for the first instance of 10 starting from the right, and replace it with 01. Then collapse all the 0s after the swapped bits in to the least significant positions (alternatively, collapse all the 1s after the swapped bits into their most significant positions).
+
+Example:
+
+    ||
+01001001 // 0x48 in hex
+After swap:
+
+    ||
+01000101 // 0x45 in hex
+Next, collapse all the 0s to the right of the swapped bits into the least significant positions:
+
+    ||->
+01000110 // 0x46 in hex
+Here is a short program that will display both the next higher and lower numbers.*/
+
+#include <iostream>
+#include <bitset>
+#include <stdlib.h>
+
+using namespace std;
+#define NUMSIZE 8       // The number of bits to display
+
+// Finds the first and second values, swaps them, and collapses.
+void swap_and_collapse(bitset<NUMSIZE>& num, bool v1, bool v2, bool c) {
+  // Find the v1 immediately followed by v2 in the number.
+  int insert_pos = 0;
+  for (int i=1; i<NUMSIZE; i++) {
+    if ((num.test(i-1) == v2) && (num.test(i) == v1)) {
+      // Found them.  Swap the values.
+      num.flip(i-1); num.flip(i);
+      break;
+    } else {
+      // Move any c bits to the beginning.
+      if (num.test(i-1) == c) {
+        num.flip(i-1);
+        num.flip(insert_pos++);
+      } // if (num.test(i-1) == c) 
+    } // if ((num.test(i-1) == v2) && (num.test(i) == v1)) 
+  } // for (int i=0; i<16; i++)
+} // swap_and_collapse
+
+int main(int argc, char* argv[]) {
+  // Get the number from the command line and display in binary.
+  int value = atoi(argv[1]);
+  bitset<NUMSIZE> orig  (value);
+  cout << "Original Number " << orig.to_ulong() << " is " << orig << endl;
+
+  // Find the next higher number.
+  bitset<NUMSIZE> higher(value);
+  swap_and_collapse(higher, 0, 1, 1);
+  // Find the next lower number.
+  bitset<NUMSIZE> lower (value);
+  swap_and_collapse(lower,  1, 0, 0);
+
+  cout << "Higher number   " << higher.to_ulong() << " is " << higher << endl;
+  cout << "Lower number    " <<  lower.to_ulong() << " is " <<  lower << endl;
+} // main
