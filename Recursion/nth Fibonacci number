@@ -1,0 +1,26 @@
+//recursion version
+int fibonacci(int n){
+   if(n==0) return 0;
+   else if(n==1){
+      return 1;
+   }else if(n>1){
+      return fibonacci(n-1)+fibonacci(n-2);
+   }else{
+      return -1; //error condition
+   }
+}
+
+//loop version
+int fibo(int n){
+    int a=0;
+    int b=1;
+    int c;
+    if(n==0) return a;
+    if(n==1) return b;
+    for(int i=2;i<=n;i++){
+       int c=a+b;
+       b=c;
+       a=b;
+    }
+    return c;
+}
