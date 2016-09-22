@@ -1,0 +1,35 @@
+//using extra space
+vector<int> combine(vector<int> A,vector<int> B)
+{
+  vector<int> res;
+  int i;
+  int index_A=0;
+  int index_B=0;
+  A.push_back(INT_MAX);
+  B.push_back(INT_MAX);
+  while(res.size()<A.size()+B.size()-2){
+    if(A[index_A]>B[index_B]){
+       res.push_back(A[index_B++]);
+    }else{
+       res.push_back(A[index_A++]);
+    }   
+  }
+  return res;
+}
+//don't using extra space
+void merge(int a[],int b[],int n,int m)
+{
+    int k=n+m-1;
+    int i=n-1;
+    int j=m-1;
+    while(i>=0&&j>=0){
+         if(a[i]>a[j]){
+           a[k--]=a[i--];
+        }else{
+           a[k--]=a[j--];
+        }
+    }
+    while(j>=0){
+        a[k--]=a[j--];
+    }
+}
