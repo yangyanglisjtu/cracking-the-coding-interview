@@ -1,0 +1,20 @@
+int findstring(vector<string> vString,string s){
+   int start=0;
+   int end=vString.size()-1;
+   while(start<=end){
+      while(start<=end&&vString[end]=="")
+          end--;
+      while(vString[mid]==""){
+        mid++;
+      }
+      int mid=(start+end)/2;
+      if(vString[mid]==s)
+         return mid;
+      if(vString[mid]>s){
+          end=mid-1;
+      }else{
+          start=mid+1;
+      }
+   }
+   return -1
+}
